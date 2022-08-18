@@ -318,7 +318,7 @@ function Dash(initialVnode) {
 
         let btn = buttonView('Submit', submitCallback);
 
-        let frm = formView('dash-form', 'dash-form', [repoLabel, repoSelect, metricLabel, metricSelect, btn]);
+        let frm = formView('dash-form', 'dash-form', [repoLabel, repoSelect, metricLabel, metricSelect]);
         
         let dv = null
 
@@ -338,6 +338,7 @@ function Dash(initialVnode) {
 
         return [
             frm, 
+            btn,
             m("h1", {}, getFullTitle()),
             dv
         ];
