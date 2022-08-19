@@ -111,7 +111,8 @@ function Dash(initialVnode) {
     }
 
     function submitCallback(e) {
-        e.preventDefault();
+        //e.preventDefault();
+        //e.redraw = false;
         model.repo = model.selectedRepo;
         model.metric = model.selectedMetric;
 
@@ -222,7 +223,7 @@ function Dash(initialVnode) {
     }
 
     function buttonView(label, callback){
-        return m("button", {onclick: callback}, label);
+        return m("button", {type: "button", onclick: callback}, label);
 
     }
 
@@ -318,7 +319,7 @@ function Dash(initialVnode) {
 
         let btn = buttonView('Submit', submitCallback);
 
-        let frm = formView('dash-form', 'dash-form', [repoLabel, repoSelect, metricLabel, metricSelect]);
+        let frm = formView('dash-form', 'dash-form', [repoLabel, repoSelect, metricLabel, metricSelect, btn]);
         
         let dv = null
 
@@ -338,7 +339,6 @@ function Dash(initialVnode) {
 
         return [
             frm, 
-            btn,
             m("h1", {}, getFullTitle()),
             dv
         ];
