@@ -201,6 +201,26 @@ function Dash(initialVnode) {
             let name = getTitle(METRICS, model.metric);
             let c = d['count'];
             let u = d['uniques'];
+
+            return m("div.stats-container", 
+                [
+                    m("div.stat-wrapper", 
+                    [
+                        m("div.label", `Total ${name}`),
+                        m("div.stat-value", `${c}`)
+
+                    ]),
+                    m("div.stat-wrapper", 
+                    [
+                        m("div.label", `Unique ${name}`),
+                        m("div.stat-value", `${u}`)
+
+                    ]),
+                
+                ]
+
+            );
+
             let txt = `Total ${name}: ${c} Unique ${name}: ${u}`;
             return m("div", {}, txt);
         }

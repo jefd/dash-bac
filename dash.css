@@ -1,3 +1,5 @@
+
+/******************* Loader ************************/
 .loader {
   border: 5px solid #f3f3f3;
   border-top: 5px solid #555;
@@ -12,3 +14,34 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+/******************* Loader ************************/
+
+
+
+
+/******************* Metric Data *******************/
+.stats-container {
+   text-align: center;
+}
+ .stat-wrapper {
+   display: inline-block;
+   text-align: left;
+   margin-left: 10px;
+   margin-right: 10px;
+ }
+ .stat-wrapper .label {
+    color: #358890;
+    /*font-size: 10px;*/
+    font-size: 18px;
+    font-weight: 600;
+    border-bottom: 2px solid #358890;
+    max-width: 120px;
+    width: 120px;
+ }
+
+ .stat-wrapper .stat-value {
+    color: #094293;
+    font-size: 18px;
+    font-weight: 800;
+ }
+/******************* Metric Data *******************/
