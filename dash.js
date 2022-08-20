@@ -225,7 +225,7 @@ function Dash(initialVnode) {
 
     }
 
-    function mkTable(headers, data) {
+    function tableView(headers, data) {
         /*
          headers = ['header1', 'header2', 'header3'];
          data = [
@@ -270,7 +270,7 @@ function Dash(initialVnode) {
                 [`${c}`, `${u}`]
             ];
 
-            return mkTable(headers, data_rows);
+            return tableView(headers, data_rows);
 
         }
         return "";
@@ -329,7 +329,7 @@ function Dash(initialVnode) {
 
 
 
-        let table = mkTable(headers, data_rows);
+        let table = tableView(headers, data_rows);
          
         return [h3, table];
     }
@@ -358,7 +358,7 @@ function Dash(initialVnode) {
             return [item["name"], item["date"]];
             });
 
-        let table = mkTable(headers, data_rows);
+        let table = tableView(headers, data_rows);
          
         return [h3, table];
     }
