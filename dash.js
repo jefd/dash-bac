@@ -228,6 +228,22 @@ function Dash(initialVnode) {
 
     }
 
+    function metricDataViewTable(vnode) {
+        let d = model.data;
+        if (model.metric === "views" || model.metric === "clones") {
+            let name = getTitle(METRICS, model.metric);
+            let c = d['count'];
+            let u = d['uniques'];
+
+            let header_row = m("tr", [m("th", `Total ${name}`), m("th", `Unique ${name}`)]);
+            let data_row = m("tr", [m("td", `${c}`), m("td", `${u}`)]);
+
+            return m("table", {border: "1"}, [header_row, data_row]);
+
+        }
+        return "";
+    }
+
     function createChart(vnode) {
         const ctx = vnode.dom.getContext('2d');
 
@@ -239,7 +255,8 @@ function Dash(initialVnode) {
     }
 
     function chartView(vnode) {
-        return [m("canvas#chart", {oncreate: createChart}), metricDataView()];
+        //return [m("canvas#chart", {oncreate: createChart}), metricDataView()];
+        return [m("canvas#chart", {oncreate: createChart}), metricDataViewTable()];
     }
 
     function buttonView(label, callback){
