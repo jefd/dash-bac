@@ -220,9 +220,6 @@ function Dash(initialVnode) {
                 ]
 
             );
-
-            let txt = `Total ${name}: ${c} Unique ${name}: ${u}`;
-            return m("div", {}, txt);
         }
         return "";
 
@@ -268,10 +265,12 @@ function Dash(initialVnode) {
             let c = d['count'];
             let u = d['uniques'];
 
-            let header_row = m("tr", [m("th", `Total ${name}`), m("th", `Unique ${name}`)]);
-            let data_row = m("tr", [m("td", `${c}`), m("td", `${u}`)]);
+            let headers = [`Total ${name}`, `Unique ${name}`];
+            let data_rows = [
+                [`${c}`, `${u}`]
+            ];
 
-            return m("table", {border: "1"}, [header_row, data_row]);
+            return mkTable(headers, data_rows);
 
         }
         return "";
@@ -322,15 +321,15 @@ function Dash(initialVnode) {
 
         let h3 = m("h3", {}, `Total Number of Contributors: ${count}`);
 
-        let header_rows = [m("tr", [m("th", "Login"), m("th", "Number of Contributions")])];
-
+        let headers = ['User Name', 'Number of Contributions'];
+        
         let data_rows = data['top'].map(function(item) {
-            return m("tr", [m("td", item["login"]), m("td", item["contributions"])])
+            return [item["login"], item["contributions"]];
             });
 
-        let children = header_rows.concat(data_rows);
 
-        let table = m("table", {border: "1"}, children)
+
+        let table = mkTable(headers, data_rows);
          
         return [h3, table];
     }
@@ -353,15 +352,13 @@ function Dash(initialVnode) {
         let data = model.data.releases;
         let h3 = m("h3", {}, "Releases");
 
-        let header_rows = [m("tr", [m("th", "Name"), m("th", "Date")])];
+        let headers = ['Name', 'Release Date']
 
         let data_rows = data.map(function(item) {
-            return m("tr", [m("td", item["name"]), m("td", item["date"])])
+            return [item["name"], item["date"]];
             });
 
-        let children = header_rows.concat(data_rows);
-
-        let table = m("table", {border: "1"}, children)
+        let table = mkTable(headers, data_rows);
          
         return [h3, table];
     }
