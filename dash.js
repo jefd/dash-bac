@@ -265,12 +265,12 @@ function Dash(initialVnode) {
             let c = d['count'];
             let u = d['uniques'];
 
-            let headers = [`Total ${name}`, `Unique ${name}`];
+            let header_row = [`Total ${name}`, `Unique ${name}`];
             let data_rows = [
                 [`${c}`, `${u}`]
             ];
 
-            return tableView(headers, data_rows);
+            return tableView(header_row, data_rows);
 
         }
         return "";
@@ -321,7 +321,7 @@ function Dash(initialVnode) {
 
         let h3 = m("h3", {}, `Total Number of Contributors: ${count}`);
 
-        let headers = ['User Name', 'Number of Contributions'];
+        let header_row = ['User Name', 'Number of Contributions'];
         
         let data_rows = data['top'].map(function(item) {
             return [item["login"], item["contributions"]];
@@ -329,7 +329,7 @@ function Dash(initialVnode) {
 
 
 
-        let table = tableView(headers, data_rows);
+        let table = tableView(header_row, data_rows);
          
         return [h3, table];
     }
@@ -352,13 +352,13 @@ function Dash(initialVnode) {
         let data = model.data.releases;
         let h3 = m("h3", {}, "Releases");
 
-        let headers = ['Name', 'Release Date']
+        let header_row = ['Name', 'Release Date']
 
         let data_rows = data.map(function(item) {
             return [item["name"], item["date"]];
             });
 
-        let table = tableView(headers, data_rows);
+        let table = tableView(header_row, data_rows);
          
         return [h3, table];
     }
