@@ -228,6 +228,39 @@ function Dash(initialVnode) {
 
     }
 
+    function mkTable(headers, data) {
+        /*
+         headers = ['header1', 'header2', 'header3'];
+         data = [
+             [1, 2, 3],
+             [4, 5, 6],
+             [7, 8, 9]
+         ];
+        */
+
+        function get_row(lst, is_header=false) {
+            let d = lst.map(function(item) {
+                return is_header ? m("th", item) : m("td", item);
+            });
+
+            return m("tr", d);
+
+        }
+
+        function get_rows(lst) {
+            return lst.map(function(inner_lst) {
+                return get_row(inner_lst);
+            });
+        }
+
+        let header_row = get_row(headers, true);
+        let data_rows = get_rows(data);
+
+        let children = [header_row].concat(data_rows);
+
+        return m("table", {border: "1"}, children);
+    }
+
     function metricDataViewTable(vnode) {
         let d = model.data;
         if (model.metric === "views" || model.metric === "clones") {
