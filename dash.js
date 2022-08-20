@@ -255,8 +255,8 @@ function Dash(initialVnode) {
     }
 
     function chartView(vnode) {
-        //return [m("canvas#chart", {oncreate: createChart}), metricDataView()];
-        return [m("canvas#chart", {oncreate: createChart}), metricDataViewTable()];
+        return [m("canvas#chart", {oncreate: createChart}), metricDataView()];
+        //return [m("canvas#chart", {oncreate: createChart}), metricDataViewTable()];
     }
 
     function buttonView(label, callback){
@@ -376,7 +376,7 @@ function Dash(initialVnode) {
 
         return [
             frm, 
-            m("h1", {}, getFullTitle()),
+            m("h1", {style: {"text-align": "center"}}, getFullTitle()),
             dv
         ];
 
