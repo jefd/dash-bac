@@ -182,11 +182,13 @@ function Dash(initialVnode) {
     /***********************************************************/
 
     /************************** View Functions ***********************/
-    function selectView(id, name, options, callback) {
+    function selectView(id, name, label, options, callback) {
 
         let opts = options.map(function(option) {
             return m("option", {value: option.name}, option.title);
         });
+
+        opts = [m("option", {disabled: true, selected: true}, label)].concat(opts);
 
         return m("select", {id: id, name: name, onchange: callback}, opts);
     }
@@ -337,7 +339,6 @@ function Dash(initialVnode) {
 
     function releaseViewList(vnode) {
         let data = model.data.releases;
-        let h3 = m("h3", {}, "Releases");
 
         let children = data.map(function(item) {
             let name = item['name'];
@@ -346,12 +347,11 @@ function Dash(initialVnode) {
             return m("li", {}, txt);
         });
 
-        return m("div", {}, [h3, m("ol", {}, children)]);
+        return m("div", {}, [m("ol", {}, children)]);
     }
 
     function releaseViewTable(vnode) {
         let data = model.data.releases;
-        let h3 = m("h3", {}, "Releases");
 
         let header_row = ['Name', 'Release Date']
 
@@ -361,7 +361,7 @@ function Dash(initialVnode) {
 
         let table = tableView(header_row, data_rows);
          
-        return [h3, table];
+        return table;
     }
 
     function dataView(vnode) {
@@ -379,15 +379,13 @@ function Dash(initialVnode) {
     function view(vnode) {
 
 
-        let repoLabel = m("label", {for: 'repo-select'}, "Select Repository ");
-        let repoSelect = selectView('repo-select', 'repo-select', REPOS, updateRepo);
+        let repoSelect = selectView('repo-select', 'repo-select', 'Repository', REPOS, updateRepo);
 
-        let metricLabel = m("label", {for: 'metric-select'}, "Select Metric ");
-        let metricSelect = selectView('metric-select', 'metric-select', METRICS, updateMetric);
+        let metricSelect = selectView('metric-select', 'metric-select', 'Metric', METRICS, updateMetric);
 
         let btn = buttonView('Submit', submitCallback);
 
-        let frm = formView('dash-form', 'dash-form', [repoLabel, repoSelect, metricLabel, metricSelect, btn]);
+        let frm = formView('dash-form', 'dash-form', [repoSelect, metricSelect, btn]);
         
         let dv = null
 
